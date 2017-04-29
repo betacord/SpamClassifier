@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "",
+    "contents" : "library(tm)\nlibrary(ggplot2)\nspam.path <- \"data/spam/\" #training\nspam2.path <- \"data/spam_2/\" #test\neasyham.path <- \"data/easy_ham/\"\neasyham2.path <- \"data/easy_ham_2/\"\nhardham.path <- \"data/hard_ham/\"\nhardham2.path <- \"data/hard_ham_2/\"\n\nget.msg <- function(path) {\n  con <- file(path, open = \"rt\", encoding = \"latin1\")\n  text <- readLines(con)\n  msg <- text[seq(which(text==\"\")[1] + 1, length(text), 1)]\n  close(con)\n  return(paste(msg, collapse = \"\\n\"))\n}\n",
     "created" : 1493498282418.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "2824557370",
     "id" : "1CD61EAF",
-    "lastKnownWriteTime" : 1493498297,
-    "last_content_update" : 1493498297736,
+    "lastKnownWriteTime" : 1493500049,
+    "last_content_update" : 1493500049178,
     "path" : "~/R/spam_classifier/classifier.R",
     "project_path" : "classifier.R",
     "properties" : {
