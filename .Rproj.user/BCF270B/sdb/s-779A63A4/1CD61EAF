@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1493498282418.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1CD61EAF",
+    "lastKnownWriteTime" : 1493498297,
+    "last_content_update" : 1493498297736,
+    "path" : "~/R/spam_classifier/classifier.R",
+    "project_path" : "classifier.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
