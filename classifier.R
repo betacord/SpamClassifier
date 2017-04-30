@@ -24,13 +24,13 @@ easyham2.path <- "data/easy_ham_2/"
 hardham.path <- "data/hard_ham/"
 hardham2.path <- "data/hard_ham_2/"
 
+#training for spam set
 spam.docs <- dir(spam.path) #filenames from directory
 spam.docs <- spam.docs[which(spam.docs != "cmds")] #without cmds files
 all.spam <- sapply(spam.docs, function(p) get.msg(paste(spam.path, p, sep = ""))) #returns vector of messages
-
 spam.tdm <- get.tdm(all.spam)
 spam.matrix <- as.matrix(spam.tdm)
-spam.counts <- rowSums(spam.matrix) #words count in all messages
+spam.counts <- rowSums(spam.matrix) #how many messages contains this word
 spam.df <- data.frame(cbind(names(spam.counts), as.numeric(spam.counts)), 
                       stringsAsFactors = FALSE)
 names(spam.df) <- c("term", "frequrency")
@@ -40,6 +40,24 @@ spam.occurence <- sapply(1:nrow(spam.matrix), function(i) {
 }) #documents percent with word / all documents
 spam.density <- spam.df$frequrency / sum(spam.df$frequrency)
 spam.df <- transform(spam.df, density = spam.density, occurence = spam.occurence)
+#head(spam.df[with(spam.df, order(-occurence)),])
 
-head(spam.df[with(spam.df, order(-occurence)),])
+
+#training for easy ham set
+easyham.docs <- dir(easyham.path)
+easyham.docs <- easyham.docs[which(easyham.docs != "cmds")] 
+all.easyham <- sapply(easyham.docs, function(p) get.msg(paste(spam.path, p, sep = ""))) 
+easyham.tdm <- get.tdm(all.easyham)
+easyham.matrix <- as.matrix(easyham.tdm)
+easyham.counts <- rowSums(easyham.matrix)
+easyham.df <- data.frame(cbind(names(easyham.counts), as.numeric(easyham.counts)), 
+                      stringsAsFactors = FALSE)
+names(easyham.df) <- c("term", "frequrency")
+easyham.df$frequrency <- as.numeric(easyham.df$frequrency)
+easyham.occurence <- sapply(1:nrow(easyham.matrix), function(i) {
+  length(which(easyham.matrix[i,] > 0)) / ncol(easyham.matrix)
+})
+easyham.density <- easyham.df$frequrency / sum(easyham.df$frequrency)
+easyham.df <- transform(easyham.df, density = easyham.density, occurence = easyham.occurence)
+head(easyham.df[with(easyham.df, order(-occurence)),])
 
