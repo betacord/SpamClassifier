@@ -17,6 +17,19 @@ get.tdm <- function(doc.vec) {
   return(doc.tdm)
 }
 
+classify.email <- function(path, training.df, prior = 0.5, c = 1e-6) {
+  msg <- get.msg(path)
+  msg.tdm <- get.tdm(msg)
+  msg.freq <- rowSums(as.matrix(msg.tdm))
+  msg.match <- intersect(names(msg.freq), training.df$term)
+  if (length(msg.match) < 1) {
+    return(prior * c ^ (length(msg.freq)))
+  } else {
+    match.probs <- training.df$occurrence[match(msg.match, training.df$term)]
+    return(prior * prod(match.probs) * c ^(length(msg.freq) - length(msg.match)))
+  }
+}
+
 spam.path <- "data/spam/" #training
 spam2.path <- "data/spam_2/" #test
 easyham.path <- "data/easy_ham/"
