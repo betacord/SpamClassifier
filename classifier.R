@@ -53,7 +53,7 @@ spam.occurence <- sapply(1:nrow(spam.matrix), function(i) {
 }) #documents percent with word / all documents
 spam.density <- spam.df$frequrency / sum(spam.df$frequrency)
 spam.df <- transform(spam.df, density = spam.density, occurence = spam.occurence)
-head(spam.df[with(spam.df, order(-occurence)),])
+#head(spam.df[with(spam.df, order(-occurence)),])
 
 
 #training for easy ham set
@@ -72,5 +72,7 @@ easyham.occurence <- sapply(1:nrow(easyham.matrix), function(i) {
 })
 easyham.density <- easyham.df$frequrency / sum(easyham.df$frequrency)
 easyham.df <- transform(easyham.df, density = easyham.density, occurence = easyham.occurence)
-head(easyham.df[with(easyham.df, order(-occurence)),])
+#head(easyham.df[with(easyham.df, order(-occurence)),])
+
+#Prior should be proportional to sets counts
 
