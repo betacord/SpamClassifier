@@ -44,7 +44,7 @@ head(spam.df[with(spam.df, order(-occurence)),])
 
 
 #training for easy ham set
-easyham.docs <- dir(easyham.path)
+easyham.docs <- dir(easyham.path)[1:500]
 easyham.docs <- easyham.docs[which(easyham.docs != "cmds")] 
 all.easyham <- sapply(easyham.docs, function(p) get.msg(paste(easyham.path, p, sep = ""))) 
 easyham.tdm <- get.tdm(all.easyham)
