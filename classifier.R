@@ -40,13 +40,13 @@ spam.occurence <- sapply(1:nrow(spam.matrix), function(i) {
 }) #documents percent with word / all documents
 spam.density <- spam.df$frequrency / sum(spam.df$frequrency)
 spam.df <- transform(spam.df, density = spam.density, occurence = spam.occurence)
-#head(spam.df[with(spam.df, order(-occurence)),])
+head(spam.df[with(spam.df, order(-occurence)),])
 
 
 #training for easy ham set
 easyham.docs <- dir(easyham.path)
 easyham.docs <- easyham.docs[which(easyham.docs != "cmds")] 
-all.easyham <- sapply(easyham.docs, function(p) get.msg(paste(spam.path, p, sep = ""))) 
+all.easyham <- sapply(easyham.docs, function(p) get.msg(paste(easyham.path, p, sep = ""))) 
 easyham.tdm <- get.tdm(all.easyham)
 easyham.matrix <- as.matrix(easyham.tdm)
 easyham.counts <- rowSums(easyham.matrix)
